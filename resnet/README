@@ -1,0 +1,28 @@
+README
+
+The contents of this folder are the following:
+
+- run_all_resnet
+- visualize_outputs_of_resnet_training_results.py
+- aug/
+- aug_flip/
+- no_aug/
+
+The run_all_resnet script is the main script to run everything, while visualize_outputs_of_resnet_training_results.py is a python script to aggregate training/test outputs into a graph. The aug/, aug_flip/, and no_aug/ directories are adaptations of https://github.com/kuangliu/pytorch-cifar changing the data augmentation and supporting subsampling (to train with subsets of the full training data). 
+
+The easiest way to run the code (with all default parameters) is to simply run the run_all_resnet script in the terminal:
+
+> bash run_all_resnet
+
+This should generate the results (shown in Figure 1). 
+
+If you get import errors, make sure you have pytorch and torchvision packages installed.
+
+> pip install torch
+> pip install torchvision
+
+For all the python files (including visualize_outputs_of_resnet_training_results.py and all the main.py files), you can run 
+
+> python <python file name> -h 
+
+to list the arguments you can specify (to try different inputs and such).

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# This will run everything serially
+# Need directory structure as:
+
+# calling directory contains:
+# <this script>
+# <AVG_SCRIPT>
+# - 'no_aug' (dir)
+#	- <MAIN_SCRIPT>
+# - 'aug_flip'
+#	- <MAIN_SCRIPT>
+# - 'aug'
+#	- <MAIN_SCRIPT>
+
+REPS=15
+FULL_OUT="rep_out/full"
+HALF_OUT="rep_out/half"
+
+experiments=(no\_aug aug\_flip aug)
+
+MAIN_SCRIPT="main.py"
+AVG_SCRIPT="visualize_outputs_of_resnet_training_results.py" 
+
+for EXP in ${experiments[@]}; do
+	SCRIPT="${EXP}/${MAIN_SCRIPT}"
+	echo $SCRIPT
+	for i in $(seq 1 $REPS); do
+		echo $i
+		echo "${EXP}_${i}.txt"
+
+		mkdir -p "${FULL_OUT}/${EXP}"
+		mkdir -p "${HALF_OUT}/${EXP}"  
+
+		echo "python $SCRIPT --part_data 'full' > ./${FULL_OUT}/${EXP}/${EXP}_${i}.txt"
+		echo "python $SCRIPT --part_data 'half' > ./${HALF_OUT}/${EXP}/${EXP}_${i}.txt" 
+
+		# call python script and pipe to file 
+		python $SCRIPT --part_data 'full' > "./${FULL_OUT}/${EXP}/${EXP}_${i}.txt"
+		python $SCRIPT --part_data 'half' > "./${HALF_OUT}/${EXP}/${EXP}_${i}.txt"
+
+	done
+done
+python ${AVG_SCRIPT} --errorbar --aug_dir "./${FULL_OUT}/aug" --aug_flip_dir "./${FULL_OUT}/aug_flip" --no_aug_dir "./${FULL_OUT}/no_aug" --save_name "compare_full_data_${REPS}rep_avg_std.png"
+python ${AVG_SCRIPT} --errorbar --aug_dir "./${HALF_OUT}/aug" --aug_flip_dir "./${HALF_OUT}/aug_flip" --no_aug_dir "./${HALF_OUT}/no_aug" --save_name "compare_half_data_${REPS}rep_avg_std.png"

@@ -1,0 +1,14 @@
+README
+
+These are small MATLAB script used to generate the plots in Figure 1 in the supplement.
+
+In particular:
+	- mean_aug_exp.m generates the histogram, and
+	- poisson_mean_aug_exp.m generates the plot of relative efficiency given different parameters lambda for the poisson distribution
+
+To run this script without opening the GUI, check out this helpful guide: https://people.sc.fsu.edu/~jburkardt/m_src/matlab_commandline/matlab_commandline.html.
+
+For instance, you can run
+> <path to matlab executable> -nosplash -nodisplay -nojvm -nodesktop < mean_aug_exp.m
+
+Otherwise, you can open this file in MATLAB and run it using the GUI.

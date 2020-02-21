@@ -1,0 +1,10 @@
+README
+
+This is a small MATLAB script used to generate Figure 2 in the main paper. 
+
+To run this script without opening the GUI, check out this helpful guide: https://people.sc.fsu.edu/~jburkardt/m_src/matlab_commandline/matlab_commandline.html.
+
+For instance, you can run
+> <path to matlab executable> -nosplash -nodisplay -nojvm -nodesktop < 2L\ NN\ circ\ shift.m
+
+Otherwise, you can open this file in MATLAB and run it using the GUI.
