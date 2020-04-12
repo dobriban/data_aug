@@ -3,8 +3,7 @@ Experiments in data augmentation paper
 
 Code for the paper:
 
-Invariance reduces Variance: Understanding Data Augmentation in 
-Deep Learning and Beyond. 
+A Group-Theoretic Framework for Data Augmentation.
 
 https://arxiv.org/abs/1907.10905. 
 
